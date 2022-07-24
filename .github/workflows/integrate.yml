@@ -1,6 +1,8 @@
 name: Svelte Kit Integration
 
 on:
+    push:
+        branches: [main]
     pull_request:
         branches: [main]
 
