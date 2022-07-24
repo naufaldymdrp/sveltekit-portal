@@ -1,6 +1,8 @@
 name: Svelte Kit Integration
 
 on:
+    push:
+        branches: [main]
     pull_request:
         branches: [main]
 
@@ -8,7 +10,7 @@ jobs:
     Svelte_Kit_Unit_Tests:
         strategy:
             matrix:
-                node-version: [14.x, 15.x, 16.x]
+                node-version: [16.x]
 
         runs-on: ubuntu-22.04
 
@@ -21,7 +23,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
             - name: Restore Node.js packages using 'npm ci'
               run: npm ci
-            - name: Build Svelte Kit
-              run: npm run build
+            - name: install Playwright Chromium Dependencies
+              run: npx playwright install --with-deps chromium
             - name: Test Svelte Kit via Playwright
               run: npm test
