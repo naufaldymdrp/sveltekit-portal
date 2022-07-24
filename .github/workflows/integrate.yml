@@ -23,7 +23,7 @@ jobs:
                   node-version: ${{ matrix.node-version }}
             - name: Restore Node.js packages using 'npm ci'
               run: npm ci
-            - name: Build Svelte Kit
-              run: npm run build
+            - name: install Playwright Chromium Dependencies
+              run: npx playwright install --with-deps chromium
             - name: Test Svelte Kit via Playwright
               run: npm test
